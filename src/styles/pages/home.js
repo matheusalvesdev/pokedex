@@ -58,6 +58,33 @@ const styles = StyleSheet.create({
         marginTop: SIZES.height - 760,
         width: SIZES.width - 100,
     },
+
+    
+    containerSearchInput: {
+        width: SIZES.width - 50,
+        height: SIZES.height - 710,
+        backgroundColor: COLORS.background_default_input.normal,
+        marginTop: SIZES.height - 740,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+        borderRadius: SIZES.radius2
+    },
+    searchTextInput: {
+        width: SIZES.width - 140,
+        height: SIZES.height - 750,
+        backgroundColor: COLORS.background_transparent.normal,
+        fontSize: FONTS.body3.fontSize,
+        lineHeight: FONTS.body3.lineHeight,
+        color: COLORS.text_grey.normal
+    },
+    iconSearchInput: {
+        width: SIZES.width - 365,
+        height: SIZES.height - 745,
+        marginRight: SIZES.width - 380,
+        resizeMode: 'contain',
+        opacity: 0.5,
+    }
 });
 
 export default styles;
