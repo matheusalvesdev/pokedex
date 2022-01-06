@@ -1,5 +1,7 @@
 // Outras Imagens
 const Pokeball = require('../../assets/images/Pokeball.png');
+const Pokeball_White = require('../../assets/images/Pokeball_White.png');
+const Pokeball_Black_Gradient = require('../../assets/images/Pokeball_Black_Gradient.png');
 const Circle = require('../../assets/images/Circle.png');
 const I6x3 = require('../../assets/images/6x3.png');
 const I10x5 = require('../../assets/images/10x5.png');
@@ -46,6 +48,8 @@ const G8_816 = require('../../assets/images/pokemons/816.png');
 
 export default {
     Pokeball,
+    Pokeball_White,
+    Pokeball_Black_Gradient,
     Circle,
     I6x3,
     I10x5,

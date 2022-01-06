@@ -47,24 +47,24 @@ const Weigth_Light_Transparent = require('../../assets/icons/pokemons_weights_tr
 const Weigth_Normal_Transparent = require('../../assets/icons/pokemons_weights_transparent/Weight=Normal, Selected=False.png');
 
 // Pokemons Type Badges
-const Pokemon_Type_Bug_Badge = require('../../assets/icons/pokemons_types_badges/Type=Bug.png');
-const Pokemon_Type_Dark_Badge = require('../../assets/icons/pokemons_types_badges/Type=Dark.png');
-const Pokemon_Type_Dragon_Badge = require('../../assets/icons/pokemons_types_badges/Type=Dragon.png');
-const Pokemon_Type_Electric_Badge = require('../../assets/icons/pokemons_types_badges/Type=Electric.png');
-const Pokemon_Type_Fairy_Badge = require('../../assets/icons/pokemons_types_badges/Type=Fairy.png');
-const Pokemon_Type_Fighting_Badge = require('../../assets/icons/pokemons_types_badges/Type=Fighting.png');
-const Pokemon_Type_Fire_Badge = require('../../assets/icons/pokemons_types_badges/Type=Fire.png');
-const Pokemon_Type_Flying_Badge = require('../../assets/icons/pokemons_types_badges/Type=Flying.png');
-const Pokemon_Type_Ghost_Badge = require('../../assets/icons/pokemons_types_badges/Type=Ghost.png');
-const Pokemon_Type_Grass_Badge = require('../../assets/icons/pokemons_types_badges/Type=Grass.png');
-const Pokemon_Type_Ground_Badge = require('../../assets/icons/pokemons_types_badges/Type=Ground.png');
-const Pokemon_Type_Ice_Badge = require('../../assets/icons/pokemons_types_badges/Type=Ice.png');
-const Pokemon_Type_Normal_Badge = require('../../assets/icons/pokemons_types_badges/Type=Normal.png');
-const Pokemon_Type_Poison_Badge = require('../../assets/icons/pokemons_types_badges/Type=Poison.png');
-const Pokemon_Type_Psychic_Badge = require('../../assets/icons/pokemons_types_badges/Type=Psychic.png');
-const Pokemon_Type_Rock_Badge = require('../../assets/icons/pokemons_types_badges/Type=Rock.png');
-const Pokemon_Type_Steel_Badge = require('../../assets/icons/pokemons_types_badges/Type=Steel.png');
-const Pokemon_Type_Water_Badge = require('../../assets/icons/pokemons_types_badges/Type=Water.png');
+const Pokemon_Type_Bug_Badge = require('../../assets/icons/pokemons_types_badges/Type_Bug.png');
+const Pokemon_Type_Dark_Badge = require('../../assets/icons/pokemons_types_badges/Type_Dark.png');
+const Pokemon_Type_Dragon_Badge = require('../../assets/icons/pokemons_types_badges/Type_Dragon.png');
+const Pokemon_Type_Electric_Badge = require('../../assets/icons/pokemons_types_badges/Type_Electric.png');
+const Pokemon_Type_Fairy_Badge = require('../../assets/icons/pokemons_types_badges/Type_Fairy.png');
+const Pokemon_Type_Fighting_Badge = require('../../assets/icons/pokemons_types_badges/Type_Fighting.png');
+const Pokemon_Type_Fire_Badge = require('../../assets/icons/pokemons_types_badges/Type_Fire.png');
+const Pokemon_Type_Flying_Badge = require('../../assets/icons/pokemons_types_badges/Type_Flying.png');
+const Pokemon_Type_Ghost_Badge = require('../../assets/icons/pokemons_types_badges/Type_Ghost.png');
+const Pokemon_Type_Grass_Badge = require('../../assets/icons/pokemons_types_badges/Type_Grass.png');
+const Pokemon_Type_Ground_Badge = require('../../assets/icons/pokemons_types_badges/Type_Ground.png');
+const Pokemon_Type_Ice_Badge = require('../../assets/icons/pokemons_types_badges/Type_Ice.png');
+const Pokemon_Type_Normal_Badge = require('../../assets/icons/pokemons_types_badges/Type_Normal.png');
+const Pokemon_Type_Poison_Badge = require('../../assets/icons/pokemons_types_badges/Type_Poison.png');
+const Pokemon_Type_Psychic_Badge = require('../../assets/icons/pokemons_types_badges/Type_Psychic.png');
+const Pokemon_Type_Rock_Badge = require('../../assets/icons/pokemons_types_badges/Type_Rock.png');
+const Pokemon_Type_Steel_Badge = require('../../assets/icons/pokemons_types_badges/Type_Steel.png');
+const Pokemon_Type_Water_Badge = require('../../assets/icons/pokemons_types_badges/Type_Water.png');
 
 // Pokemons Type Circle
 const Pokemon_Type_Bug_Circle = require('../../assets/icons/pokemons_types_circle/Type=Bug, Selected=True.png');
