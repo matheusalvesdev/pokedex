@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, Image, TextInput, FlatList, ImageBackground } from 'react-native';
 
 import stylesHome from '../styles/pages/home';
-import stylesApp from '../styles/pages/home';
-import { ICONS, IMAGES } from '../constants/index';
+import { ICONS, IMAGES, COLORS } from '../constants/index';
 import { apiListPokemonsLimitAndOffset, apiObjectPokemonIdOrName } from '../components/apiCalls';
 
     
@@ -142,7 +141,7 @@ export default function Home() {
                         sourceType = ICONS.Pokemon_Type_Dragon_Badge;
                         break;
                     }
-                    case 'ELETRIC': {
+                    case 'ELECTRIC': {
                         sourceType = ICONS.Pokemon_Type_Electric_Badge;
                         break;
                     }
@@ -217,8 +216,90 @@ export default function Home() {
             )
         }
 
+        const returnFlatListItemBackground = (listTypes) => {
+                let backgroundColor = null;
+                let type = listTypes[0];
+
+                switch(type.toString().toUpperCase()) {
+                    case 'BUG': {
+                        backgroundColor = COLORS.background_type_bug.normal;
+                        break;
+                    }
+                    case 'DARK': {
+                        backgroundColor = COLORS.background_type_dark.normal;
+                        break;
+                    }
+                    case 'DRAGON': {
+                        backgroundColor = COLORS.background_type_dragon.normal;
+                        break;
+                    }
+                    case 'ELECTRIC': {
+                        backgroundColor = COLORS.background_type_eletric.normal;
+                        break;
+                    }
+                    case 'FAIRY': {
+                        backgroundColor = COLORS.background_type_fairy.normal;
+                        break;
+                    }
+                    case 'FIGHTING': {
+                        backgroundColor = COLORS.background_type_fighting.normal;
+                        break;
+                    }
+                    case 'FIRE': {
+                        backgroundColor = COLORS.background_type_fire.normal;
+                        break;
+                    }
+                    case 'FLYING': {
+                        backgroundColor = COLORS.background_type_flying.normal;
+                        break;
+                    }
+                    case 'GHOST': {
+                        backgroundColor = COLORS.background_type_ghost.normal;
+                        break;
+                    }
+                    case 'GRASS': {
+                        backgroundColor = COLORS.background_type_grass.normal;
+                        break;
+                    }
+                    case 'GROUND': {
+                        backgroundColor = COLORS.background_type_ground.normal;
+                        break;
+                    }
+                    case 'ICE': {
+                        backgroundColor = COLORS.background_type_ice.normal;
+                        break;
+                    }
+                    case 'NORMAL': {
+                        backgroundColor = COLORS.background_type_normal.normal;
+                        break;
+                    }
+                    case 'POISON': {
+                        backgroundColor = COLORS.background_type_poison.normal;
+                        break;
+                    }
+                    case 'PSYCHIC': {
+                        backgroundColor = COLORS.background_type_psychic.normal;
+                        break;
+                    }
+                    case 'ROCK': {
+                        backgroundColor = COLORS.background_type_rock.normal;
+                        break;
+                    }
+                    case 'STEEL': {
+                        backgroundColor = COLORS.background_type_steel.normal;
+                        break;
+                    }
+                    case 'WATER': {
+                        backgroundColor = COLORS.background_type_water.normal;
+                        break;
+                    }
+                }
+                
+                return backgroundColor;
+        }
+
         return(
-            <TouchableOpacity style={stylesHome.containerListItem}>
+            <TouchableOpacity style={[stylesHome.containerListItem, {backgroundColor: returnFlatListItemBackground(item.types)}]}>
                 <Image
                     source={IMAGES.Pokeball_White}
                     style={stylesHome.listItemBackgroundPokeball}
@@ -251,6 +332,18 @@ export default function Home() {
                     />
                 </View>
             </TouchableOpacity>
+        )
+    }
+
+    const renderFlatiListFooterItem = () => {
+        return (
+            <View style={stylesHome.containerViewMore}>
+                <TouchableOpacity style={stylesHome.buttonViewMore} onPress={actionButtonSeeMore}>
+                    <Text style={stylesHome.textViewMore}>
+                        See more
+                    </Text>
+                </TouchableOpacity>
+            </View>
         )
     }
 
@@ -316,15 +409,7 @@ export default function Home() {
                     keyExtractor={item => item.id}
                     style={stylesHome.flatListStyle}
                     extraData={flatListRefresh}
-                    ListFooterComponent={
-                        <View style={stylesHome.containerViewMore}>
-                            <TouchableOpacity style={stylesHome.buttonViewMore} onPress={actionButtonSeeMore}>
-                                <Text style={stylesHome.textViewMore}>
-                                    See more
-                                </Text>
-                            </TouchableOpacity>
-                        </View>
-                    }
+                    ListFooterComponent={renderFlatiListFooterItem}
                 />
             </>
         );

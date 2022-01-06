@@ -93,7 +93,6 @@ const styles = StyleSheet.create({
     containerListItem: {
         width: SIZES.width - 50,
         height: SIZES.height - 660,
-        backgroundColor: COLORS.background_type_grass.normal,
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
