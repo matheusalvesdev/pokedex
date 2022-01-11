@@ -5,6 +5,7 @@ const Generation = require('../../assets/icons/Generation.png');
 const Front = require('../../assets/icons/Front.png');
 const Filter = require('../../assets/icons/Filter.png');
 const Back = require('../../assets/icons/Back.png');
+const Refresh = require('../../assets/icons/Refresh.png');
 
 // Generations Card Colored
 const G1_Card_Colored = require('../../assets/icons/pokemons_generations_card_colored/Generation=I, Selected=True.png');
@@ -113,6 +114,7 @@ export default {
     Front,
     Filter,
     Back,
+    Refresh,
 
     G1_Card_Colored,
     G2_Card_Colored,

@@ -194,7 +194,13 @@ const styles = StyleSheet.create({
         lineHeight: FONTS.h4.lineHeight,
         color: COLORS.background_button_selected.normal,
         fontWeight: 'bold',
-    }
+    },
+    iconRefreshList: {
+        width: SIZES.width - 360,
+        height: SIZES.height - 730,
+        marginRight: SIZES.width - 380,
+        resizeMode: 'contain',
+    },
 });
 
 export default styles;

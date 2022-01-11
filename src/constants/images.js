@@ -6,6 +6,7 @@ const Circle = require('../../assets/images/Circle.png');
 const I6x3 = require('../../assets/images/6x3.png');
 const I10x5 = require('../../assets/images/10x5.png');
 
+
 // Geração 1
 const G1_001 = require('../../assets/images/pokemons/001.png');
 const G1_004 = require('../../assets/images/pokemons/004.png');

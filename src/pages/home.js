@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, Image, TextInput, FlatList, ImageBackground } from 'react-native';
 
 import stylesHome from '../styles/pages/home';
+
 import { ICONS, IMAGES, COLORS } from '../constants/index';
 import { apiListPokemonsLimitAndOffset, apiObjectPokemonIdOrName } from '../components/apiCalls';
 
-    
 function HeaderTitle() {
     return (
         <View style={stylesHome.containerHeaderInfo}>
@@ -20,22 +20,28 @@ function HeaderTitle() {
 }
 
 export default function Home() {
+    const [loadPage, setLoadPage] = useState(false);
     const [inputSearch, setInputSearch] = useState(null);
     const [limitOffset, setLimitOffset] = useState({
         limit: 10,
         offSet: 0
     });
     const [listPokemons, setListPokemons] = useState([]);
-    const [loadPage, setLoadPage] = useState(false);
     const [flatListRefresh, setflatListRefresh] = useState(false);
+    const [buttonSeeMore, setButtonSeeMore] = useState(true);
 
-    async function apiSearchInformationsPokemon(id, name) {
-        let objectRequest = await apiObjectPokemonIdOrName(id, name);
+    async function apiSearchInformationsPokemon(idOrNameParam, cleanListPokemons) {
+        const objectRequest = await apiObjectPokemonIdOrName(idOrNameParam);
         
         if(objectRequest.success == true) {
             const pokemonInfo = returnObjectPokemonInformations(objectRequest.return.data);
 
-            let listPokemonsAtt = listPokemons;
+            let listPokemonsAtt = [];
+
+            if(cleanListPokemons == true)
+                setButtonSeeMore(false);
+            else
+                listPokemonsAtt = listPokemons;
 
             listPokemonsAtt.push(pokemonInfo);
 
@@ -44,9 +50,12 @@ export default function Home() {
             console.error('Erro');
         }
     }
-    
-    async function apiSearchMoreList() {
-        const objectRequest = await apiListPokemonsLimitAndOffset(limitOffset.offSet, limitOffset.limit);
+
+    async function apiSearchListPokemons() {
+        const offsetParam = listPokemons.length == 0 ? 0
+                                : limitOffset.offSet;
+
+        const objectRequest = await apiListPokemonsLimitAndOffset(offsetParam, limitOffset.limit);
         
         if(objectRequest.success == true) {
             setLimitOffset({
@@ -55,36 +64,39 @@ export default function Home() {
             });
 
             for(const elementPokemon of objectRequest.return.data.results) {
-                await apiSearchInformationsPokemon(null, elementPokemon.name);
+                await apiSearchInformationsPokemon(elementPokemon.name, false);
             }
         } else {
             console.error("Erro");
         }
     }
 
-    async function apiSearchInitialList() {
-        if(listPokemons.length == 0) {
-            const objectRequest = await apiListPokemonsLimitAndOffset(0, limitOffset.limit);
-            
-            if(objectRequest.success == true) {
-                setLimitOffset({
-                    limit: 10,
-                    offSet: (objectRequest.return.data.next.split('offset=')[1]).split('&')[0]
-                });
-
-                for(const elementPokemon of objectRequest.return.data.results) {
-                    await apiSearchInformationsPokemon(null, elementPokemon.name);
-                }
-            } else {
-                console.error("Erro");
-            }
-        }
-    }
-
     async function actionButtonSeeMore() {
-        await apiSearchMoreList();
+        apiSearchListPokemons(false);
 
         setflatListRefresh(!flatListRefresh);
+    }
+
+    function actionButtonRefreshList() {
+        setListPokemons([]);
+    
+        setLimitOffset({
+            limit: 10,
+            offSet: 0
+        }, []);
+        
+        apiSearchListPokemons(true);
+
+        setButtonSeeMore(true);
+
+        setflatListRefresh(!flatListRefresh);
+    }
+
+    async function actionButtonSearcInput() {
+        // Essa função não é chamada por um botão em si, mas sim quando o textinput é enviado pelo usuário
+
+        if(inputSearch != ('' && ""))
+            apiSearchInformationsPokemon(inputSearch, true);
     }
 
     const returnObjectPokemonInformations = (pokemon) => {
@@ -335,20 +347,37 @@ export default function Home() {
         )
     }
 
-    const renderFlatiListFooterItem = () => {
-        return (
-            <View style={stylesHome.containerViewMore}>
-                <TouchableOpacity style={stylesHome.buttonViewMore} onPress={actionButtonSeeMore}>
-                    <Text style={stylesHome.textViewMore}>
-                        See more
-                    </Text>
-                </TouchableOpacity>
-            </View>
-        )
+    const renderFlatListFooterItem = () => {
+        if(buttonSeeMore == true)
+            return (
+                <View style={stylesHome.containerViewMore}>
+                    <TouchableOpacity style={stylesHome.buttonViewMore} onPress={actionButtonSeeMore}>
+                        <Text style={stylesHome.textViewMore}>
+                            See more
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            )
+        
+        return null;
+
+        /*
+            return (
+                <View style={stylesHome.containerViewMore}>
+                    <TouchableOpacity style={stylesHome.buttonViewMore} onPress={actionButtonRefreshList()}>
+                        <Image
+                            source={ICONS.Refresh}
+                            style={stylesHome.iconRefreshList}
+                        />
+                    </TouchableOpacity>
+                </View>
+            )
+        */
     }
 
     useEffect(async() => {
-        await apiSearchInitialList();
+        if(listPokemons.length == 0)
+            await apiSearchListPokemons(false);
 
         setLoadPage(true);
 
@@ -398,8 +427,9 @@ export default function Home() {
                     <TextInput
                         style={stylesHome.searchTextInput}
                         placeholder='What Pokémon are you looking for?'
-                    value={inputSearch}
-                    onChangeText={setInputSearch}
+                        value={inputSearch}
+                        onChangeText={setInputSearch}
+                        onEndEditing={_ => {actionButtonSearcInput()}}
                     />
                 </View>
 
@@ -409,7 +439,7 @@ export default function Home() {
                     keyExtractor={item => item.id}
                     style={stylesHome.flatListStyle}
                     extraData={flatListRefresh}
-                    ListFooterComponent={renderFlatiListFooterItem}
+                    ListFooterComponent={renderFlatListFooterItem}
                 />
             </>
         );

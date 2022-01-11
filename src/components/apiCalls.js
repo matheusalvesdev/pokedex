@@ -26,11 +26,8 @@ async function apiListPokemonsLimitAndOffset(offset, limit) {
     return requestReturn;
 }
 
-async function apiObjectPokemonIdOrName(id, name) {
-    const queryParam = id != null ? id
-                        : name
-
-    const objRequest = returnObjRequest('GET', `pokemon/${queryParam}`, {}, {}, {});
+async function apiObjectPokemonIdOrName(idOrNameParam) {
+    const objRequest = returnObjRequest('GET', `pokemon/${idOrNameParam.toLowerCase()}`, {}, {}, {});
 
     const requestReturn = (await apiRequest({
         method: objRequest.method,

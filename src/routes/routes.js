@@ -1,6 +1,7 @@
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 import Home from '../pages/home';
+import PokemonInfo from '../pages/pokemonInfo';
 
 const Routes = createAppContainer(
     createSwitchNavigator
@@ -8,6 +9,9 @@ const Routes = createAppContainer(
         {
             // Página Inicial
             Home,
+
+            // Página de informações do pokemon
+            PokemonInfo,
         },
         {
             defaultNavigationOptions: {
